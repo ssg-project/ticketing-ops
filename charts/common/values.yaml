@@ -123,53 +123,31 @@ tolerations: []
 affinity: {}
 
 redis:
-  # Override the redis.fullname template
   fullnameOverride: redis
-  # Enable unauthenticated access to Redis
   usePassword: false
-  # Disable AOF persistemce
   configmap: |-
     appendonly no
+  master:
+    persistence:
+      storageClass: "gp2"
+  replica:
+    persistence: 
+      storageClass: "gp2"
 
 kafka:
   kraft:
     enabled: false
-  
   zookeeper:
     enabled: true
-  
   controller:
     enabled: false
     replicaCount: 0
-  
   broker:
     replicaCount: 1
-    config:
-      auto.create.topics.enable: "true"
-      delete.topic.enable: "true"
-      default.replication.factor: "1"
-      num.partitions: "1"
-  
-  persistence:
-    enabled: true
-    size: 8Gi
-
-kafka:
-  kraft:
-    enabled: false
-  
-  zookeeper:
-    enabled: true
-  
-  controller:
-    enabled: false
-    replicaCount: 0
-  
-  broker:
-    replicaCount: 1
-    # config 섹션 제거
-  
-  # 설정을 extraConfig로 이동
+    persistence:
+      enabled: true 
+      size: 8Gi
+      storageClass: "gp2"
   extraConfig: |
     auto.create.topics.enable=true
     delete.topic.enable=true
@@ -177,13 +155,6 @@ kafka:
     num.partitions=1
     log.retention.hours=168
     log.retention.bytes=1073741824
-  
-  persistence:
-    enabled: true
-    size: 8Gi
-    storageClass: ""
-  
-  # 기본 리소스 제한 설정
   resources:
     requests:
       cpu: 100m
@@ -198,7 +169,7 @@ zookeeper:
   persistence:
     enabled: true
     size: 8Gi
-    storageClass: ""
+    storageClass: "gp2"
   resources:
     requests:
       cpu: 100m

@@ -26,6 +26,10 @@ jobs:
       - name: Install Helm
         run: |
           curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+      - name: Install kubectl
+        run: |
+          curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+          sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
         
       - name: Deploy to EKS
         run: |
@@ -47,4 +51,6 @@ jobs:
 
             helm upgrade --install ${service} ./charts/$service \
               -f ./charts/${service}/values.yaml
+            
+            kubectl rollout restart deployment ${service}
           done
