@@ -122,6 +122,14 @@ tolerations: []
 
 affinity: {}
 
+global:
+  redis:
+    enabled: true
+    host: redis-master
+  kafka:
+    enabled: true
+    brokers: kafka-headless:9092
+
 redis:
   # Override the redis.fullname template
   fullnameOverride: redis
