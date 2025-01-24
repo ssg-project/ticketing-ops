@@ -1,0 +1,23 @@
+name: Update Image Tag
+
+on:
+  repository_dispatch:
+    types: [update-image]
+
+jobs:
+  update-value:
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Update Values File
+        run: |
+          REPO_NAME="${{ github.event.client_payload.repo }}"
+          SHA="${{ github.event.client_payload.sha }}"
+          
+          yq e '.image.tag = "'$SHA'"' -i charts/$REPO_NAME/values.yaml
+          
+      - name: Commit and Push
+        run: |
+          git add .
+          git commit -m "feat: update ${{ github.event.client_payload.repo }} image tag"
+          git push
