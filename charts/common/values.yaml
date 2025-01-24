@@ -141,7 +141,7 @@ kafka:
    enabled: false
    clusterId: "kafka-cluster-1"
  zookeeper:
-   enabled: false
+   enabled: true
  broker:
    replicaCount: 1
    persistence:
