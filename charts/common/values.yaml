@@ -123,8 +123,6 @@ tolerations: []
 affinity: {}
 
 redis:
-  auth:
-    enabled: false
   fullnameOverride: redis
   usePassword: false
   configmap: |-
@@ -141,7 +139,6 @@ kafka:
    replicaCount: 0
   kraft:
     enabled: false
-    clusterId: "kafka-cluster-1"
   zookeeper:
     enabled: true
   broker:
@@ -159,7 +156,7 @@ kafka:
       transaction.state.log.min.isr=1
       transaction.state.log.replication.factor=1
       listener.security.protocol.map=PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
-      advertised.listeners=PLAINTEXT://localhost:9092,PLAINTEXT_INTERNAL://broker:29092
+      advertised.listeners=PLAINTEXT://common-kafka:9092,PLAINTEXT_INTERNAL://broker:29092
     resources:
       requests:
         cpu: 100m
