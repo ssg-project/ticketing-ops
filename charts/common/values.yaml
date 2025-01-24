@@ -123,6 +123,8 @@ tolerations: []
 affinity: {}
 
 redis:
+  auth:
+    enabled: false
   fullnameOverride: redis
   usePassword: false
   configmap: |-
@@ -137,6 +139,7 @@ redis:
 Copykafka:
  kraft:
    enabled: false
+   clusterId: "kafka-cluster-1"
  zookeeper:
    enabled: false
  broker:
