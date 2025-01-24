@@ -122,17 +122,14 @@ tolerations: []
 
 affinity: {}
 
+global:
+  storageClass: "gp2"
+
 redis:
   fullnameOverride: redis
   usePassword: false
   configmap: |-
     appendonly no
-  master:
-    persistence:
-      storageClass: "gp2"
-  replica:
-    persistence: 
-      storageClass: "gp2"
 
 kafka:
   controller:
@@ -171,7 +168,6 @@ zookeeper:
   persistence:
     enabled: true
     size: 8Gi
-    storageClass: "gp2"
   volumePermissions:
     enabled: true
   extraConfig: |
