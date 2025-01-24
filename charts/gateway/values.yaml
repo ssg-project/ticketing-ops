@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: 206177862976.dkr.ecr.ap-northeast-2.amazonaws.com/ticketing/gmmt
-  tag: 	771db10eec78c651305e80fa6f82cfe99dddec51
+  tag: 	6c7146b9030d54980efc79f6dfdee171a7d48483
   pullPolicy: Always
 
 imagePullSecrets: []
@@ -60,12 +60,12 @@ resources: {}
 
 livenessProbe:
   httpGet:
-    path: /
-    port: http
+    path: /health
+    port: 8000
 readinessProbe:
   httpGet:
-    path: /
-    port: http
+    path: /health
+    port: 8000
 
 autoscaling:
   enabled: false
