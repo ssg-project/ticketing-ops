@@ -170,6 +170,8 @@ zookeeper:
     enabled: true
     size: 8Gi
     storageClass: "gp2"
+  volumePermissions:
+    enabled: true
   resources:
     requests:
       cpu: 100m
