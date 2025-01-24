@@ -136,7 +136,7 @@ redis:
     persistence: 
       storageClass: "gp2"
 
-Copykafka:
+kafka:
  kraft:
    enabled: false
    clusterId: "kafka-cluster-1"
