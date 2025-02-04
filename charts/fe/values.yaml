@@ -52,7 +52,7 @@ resources: {}
 
 livenessProbe:
   httpGet:
-    path: /heath
+    path: /health
     port: 5000
 readinessProbe:
   httpGet:
