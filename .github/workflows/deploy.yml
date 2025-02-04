@@ -30,7 +30,7 @@ jobs:
           
           helm upgrade --install common ./charts/common
           
-          for service in gateway; do
+          for service in gateway fe user; do
             pushd charts/$service
             helm dependency build
             popd
