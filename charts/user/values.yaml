@@ -1,6 +1,6 @@
 replicaCount: 1
 image:
-  repository: nginx
+  repository: 206177862976.dkr.ecr.ap-northeast-2.amazonaws.com/ticketing/gmmt
   pullPolicy: Always
   tag: c2ebb04953d16e49ccb72e94c9ccdddf8570e72a
 imagePullSecrets: []
