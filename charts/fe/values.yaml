@@ -27,9 +27,8 @@ securityContext: {}
 
 service:
   type: LoadBalancer
-  port: 80
-  targetPort: 5000
-  containerPort: 5000
+  port: 5000
+  targetPort: 80
 ingress:
   enabled: false
   className: ""
