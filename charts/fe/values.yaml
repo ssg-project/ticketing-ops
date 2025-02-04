@@ -9,7 +9,8 @@ fullnameOverride: ""
 serviceAccount:
   create: true
   automount: true
-  annotations: {}
+  annotations:
+    eks.amazonaws.com/role-arn: "arn:aws:iam::206177862976:role/test-eks-cluster-20250123012507572700000001"
   name: ""
 podAnnotations: {}
 podLabels: {}
