@@ -79,3 +79,11 @@ volumeMounts: []
 nodeSelector: {}
 tolerations: []
 affinity: {}
+
+secret:
+  database:
+    host: soyi.cluster-ckekx9n1eyul.ap-northeast-2.rds.amazonaws.com
+    port: 3306
+    username: admin
+    password: gmmt1234
+    name: soyi
