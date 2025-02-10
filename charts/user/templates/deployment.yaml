@@ -35,6 +35,9 @@ spec:
       containers:
         - name: {{ .Chart.Name }}
           {{- with .Values.securityContext }}
+          envForm:
+            - secretRef:
+              name: "{{ .Release.Name }}-db-secret"
           securityContext:
             {{- toYaml . | nindent 12 }}
           {{- end }}
