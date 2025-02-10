@@ -2,14 +2,14 @@ replicaCount: 1
 image:
   repository: 206177862976.dkr.ecr.ap-northeast-2.amazonaws.com/ticketing/gmmt
   pullPolicy: Always
-  tag: 688a1b6f8e917a04aa913afdae0a62e75c18d4d2
+  tag: 84c878c88f624c11d695c24b6a622b0ad817a31a
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 serviceAccount:
   create: true
   automount: true
-  annotations: 
+  annotations:
     eks.amazonaws.com/role-arn: "arn:aws:iam::206177862976:role/test-eks-cluster-20250123012507572700000001"
   name: ""
 podAnnotations: {}
@@ -79,7 +79,6 @@ volumeMounts: []
 nodeSelector: {}
 tolerations: []
 affinity: {}
-
 secret:
   database:
     host: soyi-instance-1.ckekx9n1eyul.ap-northeast-2.rds.amazonaws.com
