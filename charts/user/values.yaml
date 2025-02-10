@@ -86,10 +86,7 @@ secret:
     username: admin
     password: gmmt1234
     name: soyi
-<<<<<<< Updated upstream
-=======
   jwt:
     key: secretkey@fornow!
     algorithm: HS256
     expireMin: 60
->>>>>>> Stashed changes
