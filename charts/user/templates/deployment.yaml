@@ -35,14 +35,14 @@ spec:
       containers:
         - name: {{ .Chart.Name }}
           {{- with .Values.securityContext }}
-          envFrom:
-            - secretRef:
-                name: "{{ .Release.Name }}-db-secret"
           securityContext:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          envFrom:
+            - secretRef:
+                name: user-db-secret
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
