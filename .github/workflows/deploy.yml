@@ -20,6 +20,7 @@ jobs:
       - name: Deploy to EKS
         run: |
           helm repo add bitnami https://charts.bitnami.com/bitnami
+          helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
           helm repo update
 
           aws eks update-kubeconfig --name soyi
@@ -29,6 +30,7 @@ jobs:
           popd
           
           helm upgrade --install common ./charts/common
+          helm install nginx-ingress ingress-nginx/ingress-nginx --namespace kube-system
           
           for service in gateway fe user; do
             pushd charts/$service
