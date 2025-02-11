@@ -37,7 +37,7 @@ spec:
           {{- with .Values.securityContext }}
           envFrom:
             - secretRef:
-              name: "{{ .Release.Name }}-db-secret"
+                name: "{{ .Release.Name }}-db-secret"
           securityContext:
             {{- toYaml . | nindent 12 }}
           {{- end }}
