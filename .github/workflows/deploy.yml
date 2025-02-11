@@ -28,6 +28,8 @@ jobs:
           pushd charts/common
           helm dependency build
           popd
+
+          helm uninstall common || true
           
           helm upgrade --install common ./charts/common
           helm install nginx-ingress ingress-nginx/ingress-nginx --namespace kube-system
