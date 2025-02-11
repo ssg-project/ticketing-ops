@@ -2,7 +2,7 @@ replicaCount: 1
 image:
   repository: 206177862976.dkr.ecr.ap-northeast-2.amazonaws.com/ticketing/gmmt
   pullPolicy: Always
-  tag: 9f68c5f50dbfd0bc312cf973b364691dc1e31b18
+  tag: 181a5febcdc163720afdfdab90e251fe38dff7e4
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
@@ -80,7 +80,6 @@ volumeMounts: []
 nodeSelector: {}
 tolerations: []
 affinity: {}
-
 secret:
   server:
     url: http://10.0.1.180:8000
