@@ -10,7 +10,7 @@ serviceAccount:
   create: true
   automount: true
   annotations:
-    eks.amazonaws.com/role-arn: "arn:aws:iam::206177862976:role/test-eks-cluster-20250123012507572700000001"
+    eks.amazonaws.com/role-arn: "arn:aws:iam::206177862976:role/soyi-cluster-20250204021931960700000002"
   name: ""
 podAnnotations: {}
 podLabels: {}
