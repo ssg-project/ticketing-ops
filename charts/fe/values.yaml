@@ -10,7 +10,7 @@ serviceAccount:
   create: true
   automount: true
   annotations:
-    eks.amazonaws.com/role-arn: "arn:aws:iam::206177862976:role/sim-cluster-20250211030628459200000002"
+    eks.amazonaws.com/role-arn: "arn:aws:iam::206177862976:role/soyi_letsgo-cluster-20250212072443819600000001"
   name: ""
 podAnnotations: {}
 podLabels: {}

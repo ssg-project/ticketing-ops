@@ -22,7 +22,7 @@ jobs:
           helm repo add bitnami https://charts.bitnami.com/bitnami
           helm repo update
 
-          aws eks update-kubeconfig --name soyi
+          aws eks update-kubeconfig --name soyi_letsgo
 
           pushd charts/common
           helm dependency build
@@ -30,7 +30,7 @@ jobs:
           
           helm upgrade --install common ./charts/common
           
-          for service in gateway fe user websocket; do
+          for service in gateway fe user websocket event ticket-reservation-consumer; do
             pushd charts/$service
             helm dependency build
             popd
