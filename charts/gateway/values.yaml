@@ -10,7 +10,7 @@ serviceAccount:
   create: true
   automount: true
   annotations:
-    eks.amazonaws.com/role-arn: "arn:aws:iam::206177862976:role/soyi-cluster-20250204021931960700000002"
+    eks.amazonaws.com/role-arn: "arn:aws:iam::206177862976:role/soyi_letsgo-cluster-20250212072443819600000001"
   name: ""
 podAnnotations: {}
 podLabels: {}
@@ -82,7 +82,7 @@ affinity: {}
 
 secret:
   service:
-    user: 10.0.1.161:8001
+    user: user-service.default.svc.cluster.local
     ticketing: 10.0.1.161:8002
     event: 10.0.1.161:8003
   jwt:
