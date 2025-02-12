@@ -79,3 +79,12 @@ volumeMounts: []
 nodeSelector: {}
 tolerations: []
 affinity: {}
+
+secret:
+  service:
+    user: 10.0.1.161:8001
+    ticketing: 10.0.1.161:8002
+    event: 10.0.1.161:8003
+  jwt:
+    key: secretkey@fornow!
+    algorithm: HS256

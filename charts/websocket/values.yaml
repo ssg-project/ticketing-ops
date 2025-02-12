@@ -14,17 +14,16 @@ serviceAccount:
   name: ""
 podAnnotations: {}
 podLabels: {}
-
 podSecurityContext: {}
-  # fsGroup: 2000
+# fsGroup: 2000
 
 securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
+# capabilities:
+#   drop:
+#   - ALL
+# readOnlyRootFilesystem: true
+# runAsNonRoot: true
+# runAsUser: 1000
 
 service:
   type: ClusterIP
@@ -43,7 +42,6 @@ ingress:
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
-
 resources: {}
   #   cpu: 100m
   #   memory: 128Mi
@@ -67,7 +65,6 @@ autoscaling:
   maxReplicas: 100
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
-
 # Additional volumes on the output Deployment definition.
 volumes: []
 # - name: foo
@@ -82,7 +79,6 @@ volumeMounts: []
 #   readOnly: true
 
 nodeSelector: {}
-
 tolerations: []
 
 affinity: {}
