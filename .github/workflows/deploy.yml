@@ -30,7 +30,7 @@ jobs:
           
           helm upgrade --install common ./charts/common
           
-          for service in gateway fe user websocket event ticket-reservation-consumer; do
+          for service in gateway fe user websocket event; do
             pushd charts/$service
             helm dependency build
             popd
