@@ -2,7 +2,7 @@ replicaCount: 1
 image:
   repository: 206177862976.dkr.ecr.ap-northeast-2.amazonaws.com/ticketing/gmmt
   pullPolicy: Always
-  tag: "12d09911afab4d1c99010299a5e69dd9b3ccfff2"
+  tag: 12d09911afab4d1c99010299a5e69dd9b3ccfff2
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
