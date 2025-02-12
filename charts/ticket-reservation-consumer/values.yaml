@@ -2,8 +2,7 @@ replicaCount: 1
 image:
   repository: n206177862976.dkr.ecr.ap-northeast-2.amazonaws.com/ticketing/gmmt
   pullPolicy: Always
-  tag: 4f6463ac3c9063526be7dd92ab91038792a710da
-
+  tag: 8993adc231feaa68be185cba0ec45379ee30982b
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
@@ -16,7 +15,6 @@ serviceAccount:
 podAnnotations: {}
 podLabels: {}
 podSecurityContext: {}
-
 securityContext: {}
 # capabilities:
 #   drop:
@@ -28,7 +26,6 @@ securityContext: {}
 service:
   type: ClusterIP
   port: 9093
-
 ingress:
   enabled: false
   className: ""
@@ -45,12 +42,12 @@ ingress:
   #    hosts:
   #      - chart-example.local
 resources: {}
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+# limits:
+#   cpu: 100m
+#   memory: 128Mi
+# requests:
+#   cpu: 100m
+#   memory: 128Mi
 
 # This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
 livenessProbe:
@@ -61,7 +58,6 @@ readinessProbe:
   httpGet:
     path: /health
     port: 9093
-
 autoscaling:
   enabled: false
   minReplicas: 1
@@ -83,7 +79,6 @@ volumeMounts: []
 nodeSelector: {}
 tolerations: []
 affinity: {}
-
 secret:
   database:
     host: soyi-instance-1.ckekx9n1eyul.ap-northeast-2.rds.amazonaws.com
@@ -95,10 +90,8 @@ secret:
     broker_url: "127.0.0.1:9092"
     topic: "ticketing-reservation"
     # group_id: "reservation-group"
-  
   redis:
     host: "127.0.0.1"
     port: "6379"
-  
   websocket:
     server_url: "ws://127.0.0.1:9000/ws"
