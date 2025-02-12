@@ -125,7 +125,6 @@ affinity: {}
 
 secret:
   kafka:
-  broker:
-    url: "localhost:9092"
-  topic: "ticketing-reservation"
-  groupId: "reservation_group"
+    brokerUrl: "localhost:9092"
+    topic: "ticketing-reservation"
+    groupId: "reservation_group"
