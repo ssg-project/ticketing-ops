@@ -89,7 +89,7 @@ secret:
   kafka:
     broker_url: "common-kafka:9092"
     topic: "ticketing-reservation"
-    group_id: "reservation-group"
+    groupId: "reservation-group"
   redis:
     host: "127.0.0.1"
     port: "6379"
