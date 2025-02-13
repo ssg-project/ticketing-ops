@@ -81,17 +81,17 @@ tolerations: []
 affinity: {}
 secret:
   database:
-    host: "soyi-instance-1.ckekx9n1eyul.ap-northeast-2.rds.amazonaws.com"
-    port: "3306"
-    username: "admin"
-    password: "gmmt1234"
-    name: "soyi"
+    host: database-1.ckekx9n1eyul.ap-northeast-2.rds.amazonaws.com
+    port: 3306
+    username: admin
+    password: adminadmin
+    name: soyi
   kafka:
-    broker_url: "common-kafka:9092"
-    topic: "ticketing-reservation"
-    groupId: "reservation-group"
+    broker_url: common-kafka:9092
+    topic: ticketing-reservation
+    groupId: reservation-group
   redis:
-    host: "127.0.0.1"
-    port: "6379"
+    host: 127.0.0.1
+    port: 6379
   websocket:
-    server_url: "ws://127.0.0.1:9000/ws"
+    server_url: ws://127.0.0.1:9000/ws

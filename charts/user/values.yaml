@@ -81,10 +81,10 @@ tolerations: []
 affinity: {}
 secret:
   database:
-    host: soyi-instance-1.ckekx9n1eyul.ap-northeast-2.rds.amazonaws.com
+    host: database-1.ckekx9n1eyul.ap-northeast-2.rds.amazonaws.com
     port: 3306
     username: admin
-    password: gmmt1234
+    password: adminadmin
     name: soyi
   jwt:
     key: secretkey@fornow!

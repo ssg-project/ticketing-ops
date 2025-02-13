@@ -87,10 +87,10 @@ tolerations: []
 affinity: {}
 secret:
   database:
-    user: soyi-instance-1.ckekx9n1eyul.ap-northeast-2.rds.amazonaws.com
+    user: database-1.ckekx9n1eyul.ap-northeast-2.rds.amazonaws.com
     pass: 3306
     host: admin
-    password: gmmt1234
+    password: adminadmin
     name: soyi
   redis:
     host: 127.0.0.1
