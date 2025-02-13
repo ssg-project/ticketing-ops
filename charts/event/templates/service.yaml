@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "event.fullname" . }}
+  name: {{ .Release.Name }}-service
   labels:
     {{- include "event.labels" . | nindent 4 }}
 spec:

@@ -83,8 +83,8 @@ affinity: {}
 secret:
   service:
     user: user-service.default.svc.cluster.local
-    ticketing: 10.0.1.161:8002
-    event: 10.0.1.161:8003
+    ticketing: ticketing-service.default.svc.cluster.local
+    event: event-service.default.svc.cluster.local
   jwt:
     key: secretkey@fornow!
     algorithm: HS256
