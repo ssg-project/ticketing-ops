@@ -87,7 +87,7 @@ secret:
     password: gmmt1234
     name: soyi
   kafka:
-    broker_url: "common-kafka-broker:9092"
+    broker_url: "common-kafka:9092"
     topic: "ticketing-reservation"
     # group_id: "reservation-group"
   redis:
