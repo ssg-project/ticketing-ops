@@ -82,7 +82,7 @@ affinity: {}
 secret:
   database:
     host: database-1.ckekx9n1eyul.ap-northeast-2.rds.amazonaws.com
-    port: 3306
+    port: "3306"
     username: admin
     password: adminadmin
     name: soyi
