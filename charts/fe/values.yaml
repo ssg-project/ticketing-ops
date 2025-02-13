@@ -92,4 +92,4 @@ tolerations: []
 affinity: {}
 secret:
   server:
-    url: http://10.0.1.180:8000
+    url: gateway.default.svc.cluster.local
