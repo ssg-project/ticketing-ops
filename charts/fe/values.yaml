@@ -44,22 +44,22 @@ ingress:
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
-resources: {}
-limits:
-  cpu: 100m
-  memory: 128Mi
-requests:
-  cpu: 100m
-  memory: 128Mi
+resources:
+  limits:
+    cpu: 200m
+    memory: 256Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
 
 livenessProbe:
   httpGet:
     path: /health
     port: 5000
-    initialDelaySeconds: 5
-    timeoutSeconds: 5
-    periodSeconds: 10
-    failureThreshold: 5
+  initialDelaySeconds: 15
+  timeoutSeconds: 5
+  periodSeconds: 10
+  failureThreshold: 5
 readinessProbe:
   httpGet:
     path: /health
