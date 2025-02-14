@@ -85,7 +85,7 @@ secret:
     port: "3306"
     username: admin
     password: adminadmin
-    name: database-1
+    name: soyi
   kafka:
     broker_url: common-kafka.default.svc.cluster.local:9092
     topic: "ticketing-reservation"

@@ -94,7 +94,7 @@ secret:
     port: 3306
     username: admin
     password: adminadmin
-    name: database-1
+    name: soyi
   redis:
     host: redis-master.default.svc.cluster.local
     port: 6379

@@ -90,7 +90,7 @@ secret:
     port: 3306
     username: admin
     password: adminadmin
-    name: database-1
+    name: soyi
   jwt:
     key: secretkey@fornow!
     algorithm: HS256
