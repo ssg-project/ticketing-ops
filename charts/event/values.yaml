@@ -1,10 +1,9 @@
 replicaCount: 1
-
 image:
   repository: 206177862976.dkr.ecr.ap-northeast-2.amazonaws.com/ticketing/gmmt
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "6d19ca056d9ccf00734138354a587efeafb6ee31"
+  tag: "223ba57fddf40becc4c076337f8dfd4e49a2b43b"
 # This is for the secrets for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 imagePullSecrets: []
 nameOverride: ""
@@ -18,7 +17,6 @@ serviceAccount:
 podAnnotations: {}
 podLabels: {}
 podSecurityContext: {}
-
 securityContext: {}
 # capabilities:
 #   drop:
@@ -52,7 +50,6 @@ resources:
   requests:
     cpu: 100m
     memory: 128Mi
-
 # This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
 livenessProbe:
   httpGet:
