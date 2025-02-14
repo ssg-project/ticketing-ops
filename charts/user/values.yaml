@@ -56,16 +56,16 @@ livenessProbe:
   httpGet:
     path: /health
     port: 8001
-      initialDelaySeconds: 15
-      periodSeconds: 10
-      timeoutSeconds: 5
+  initialDelaySeconds: 15
+  periodSeconds: 10
+  timeoutSeconds: 5
 readinessProbe:
   httpGet:
     path: /health
     port: 8001
-    initialDelaySeconds: 15
-    periodSeconds: 10
-    timeoutSeconds: 5
+  initialDelaySeconds: 15
+  periodSeconds: 10
+  timeoutSeconds: 5
 autoscaling:
   enabled: false
   minReplicas: 1
