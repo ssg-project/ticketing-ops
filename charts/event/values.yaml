@@ -3,7 +3,7 @@ image:
   repository: 206177862976.dkr.ecr.ap-northeast-2.amazonaws.com/ticketing/gmmt
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "8a31ab407ab426d29a4e6684bc4de414e55650c8"
+  tag: "be2f4e826ae2146007ce502d460031f88ffd8127"
 # This is for the secrets for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 imagePullSecrets: []
 nameOverride: ""
