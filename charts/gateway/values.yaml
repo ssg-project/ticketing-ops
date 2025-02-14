@@ -1,7 +1,7 @@
 replicaCount: 1
 image:
   repository: 206177862976.dkr.ecr.ap-northeast-2.amazonaws.com/ticketing/gmmt
-  tag: bcbe4a3e8262522474dc6cbe133985472f5c0d13
+  tag: 2107cb6c7d0bd20614304f73a7daaa37bc5327f7
   pullPolicy: Always
 imagePullSecrets: []
 nameOverride: ""
@@ -51,7 +51,6 @@ resources:
   requests:
     cpu: 100m
     memory: 128Mi
-
 livenessProbe:
   httpGet:
     path: /health
@@ -86,7 +85,6 @@ volumeMounts: []
 nodeSelector: {}
 tolerations: []
 affinity: {}
-
 secret:
   service:
     user: http://user-service.default.svc.cluster.local:8001
