@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   name: {{ include "gateway.fullname" . }}
   labels:
-    app: gateway
     {{- include "gateway.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
