@@ -93,10 +93,10 @@ tolerations: []
 affinity: {}
 secret:
   database:
-    user: admin
-    host: "3306"
     host: database-1.ckekx9n1eyul.ap-northeast-2.rds.amazonaws.com
-    pass: adminadmin
+    port: "3306"
+    username: admin
+    password: adminadmin
     name: database-1
   redis:
     host: redis-master.default.svc.cluster.local
