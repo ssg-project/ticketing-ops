@@ -2,7 +2,7 @@ replicaCount: 1
 image:
   repository: 206177862976.dkr.ecr.ap-northeast-2.amazonaws.com/ticketing/gmmt
   pullPolicy: Always
-  tag: 028266a730159eb1570979182ae77b69177ea77a
+  tag: ec6a6012440f91998a2068dfe6efe3c6c25e009d
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
@@ -50,7 +50,6 @@ resources:
   requests:
     cpu: 100m
     memory: 128Mi
-
 livenessProbe:
   httpGet:
     path: /health
