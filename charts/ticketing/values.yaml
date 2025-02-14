@@ -120,5 +120,5 @@ affinity: {}
 secret:
   kafka:
     brokerUrl: common-kafka.default.svc.cluster.local:9092
-    topic: "ticketing-reservation"
-    groupId: "reservation_group"
+    topic: ticketing-reservation
+    groupId: reservation_group

@@ -82,16 +82,16 @@ affinity: {}
 secret:
   database:
     host: database-1.ckekx9n1eyul.ap-northeast-2.rds.amazonaws.com
-    port: "3306"
+    port: 3306
     username: admin
     password: adminadmin
     name: soyi
   kafka:
     broker_url: common-kafka.default.svc.cluster.local:9092
-    topic: "ticketing-reservation"
-    groupId: "reservation-group"
+    topic: ticketing-reservation
+    groupId: reservation-group
   redis:
     host: redis-master.default.svc.cluster.local
-    port: "6379"
+    port: 6379
   websocket:
     server_url: websocket.default.svc.cluster.local
