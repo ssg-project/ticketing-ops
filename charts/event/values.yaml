@@ -93,9 +93,9 @@ tolerations: []
 affinity: {}
 secret:
   database:
-    user: database-1.ckekx9n1eyul.ap-northeast-2.rds.amazonaws.com
+    user: admin
     pass: "3306"
-    host: admin
+    host: database-1.ckekx9n1eyul.ap-northeast-2.rds.amazonaws.com
     password: adminadmin
     name: database-1
   redis:
