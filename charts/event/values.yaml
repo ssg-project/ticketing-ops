@@ -98,7 +98,4 @@ secret:
   redis:
     host: redis-master.default.svc.cluster.local
     port: 6379
-  jwt:
-    key: secretkey@fornow!
-    algorithm: HS256
-    expireMin: 60
+
