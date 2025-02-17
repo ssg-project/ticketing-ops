@@ -11,7 +11,7 @@ redis:
 
 kafka:
   controller:
-   replicaCount: 0
+    replicaCount: 0
   kraft:
     enabled: false
   zookeeper:
@@ -32,6 +32,8 @@ kafka:
       transaction.state.log.replication.factor=1
       default.replication.factor=1
       min.insync.replicas=1
+      listener.security.protocol.map=PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
+      advertised.listeners=PLAINTEXT://${HOSTNAME}.kafka-headless.${NAMESPACE}.svc.cluster.local:9092
 
     resources:
       requests:
