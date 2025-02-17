@@ -31,6 +31,7 @@ jobs:
             helm repo update
             helm upgrade --install ingress-nginx ingress-nginx/ingress-nginx \
               --namespace ingress-nginx --create-namespace
+          fi
 
       - name: Deploy Helm Charts
         run: |
