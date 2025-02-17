@@ -3,6 +3,8 @@ global:
 
 redis:
   fullnameOverride: redis
+  auth:
+    enabled: false
   usePassword: false
   configmap: |-
     appendonly no
