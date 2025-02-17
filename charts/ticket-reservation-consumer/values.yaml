@@ -2,7 +2,7 @@ replicaCount: 1
 image:
   repository: 206177862976.dkr.ecr.ap-northeast-2.amazonaws.com/kuni-test/consumer-ticket
   pullPolicy: Always
-  tag: 113da8a94e8609f16f0ed75f369c25e0212efa92
+  tag: ec4577baa34ce481c0636749a0894489e7b27794
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
