@@ -1,6 +1,6 @@
 replicaCount: 1
 image:
-  repository: 206177862976.dkr.ecr.ap-northeast-2.amazonaws.com/ticketing/gmmt
+  repository: 206177862976.dkr.ecr.ap-northeast-2.amazonaws.com/ticketing/api-ticket-service
   pullPolicy: Always
   tag: 113da8a94e8609f16f0ed75f369c25e0212efa92
 imagePullSecrets: []
@@ -10,7 +10,7 @@ serviceAccount:
   create: true
   automount: true
   annotations:
-    eks.amazonaws.com/role-arn: "arn:aws:iam::206177862976:role/soyi_letsgo-cluster-20250212072443819600000001"
+    eks.amazonaws.com/role-arn: "arn:aws:iam::206177862976:role/ticketing-cluster-20250217023715841800000001"
   name: ""
 podAnnotations: {}
 podLabels: {}
@@ -81,11 +81,11 @@ tolerations: []
 affinity: {}
 secret:
   database:
-    host: database-1.ckekx9n1eyul.ap-northeast-2.rds.amazonaws.com
+    host: ticketing.ckekx9n1eyul.ap-northeast-2.rds.amazonaws.com
     port: 3306
     username: admin
     password: adminadmin
-    name: soyi
+    name: ticketing
   kafka:
     broker_url: common-kafka.default.svc.cluster.local:9092
     topic: ticketing-reservation
