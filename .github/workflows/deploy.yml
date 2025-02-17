@@ -26,10 +26,11 @@ jobs:
 
       - name: Install NGINX Ingress Controller
         run: |
-          helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-          helm repo update
-          helm upgrade --install ingress-nginx ingress-nginx/ingress-nginx \
-            --namespace ingress-nginx --create-namespace
+          if ! helm list -n ingress-nginx | grep -q ingress-nginx; then
+            helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+            helm repo update
+            helm upgrade --install ingress-nginx ingress-nginx/ingress-nginx \
+              --namespace ingress-nginx --create-namespace
 
       - name: Deploy Helm Charts
         run: |
