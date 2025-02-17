@@ -1,6 +1,6 @@
 replicaCount: 1
 image:
-  repository: 206177862976.dkr.ecr.ap-northeast-2.amazonaws.com/ticketing/gmmt
+  repository: 206177862976.dkr.ecr.ap-northeast-2.amazonaws.com/ticketing/api-event-service
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "5f98fa1588b70facda890307c99b807258cffdd3"
@@ -12,7 +12,7 @@ serviceAccount:
   create: true
   automount: true
   annotations:
-    eks.amazonaws.com/role-arn: "arn:aws:iam::206177862976:role/soyi_letsgo-cluster-20250212072443819600000001"
+    eks.amazonaws.com/role-arn: "arn:aws:iam::206177862976:role/ticketing-cluster-20250217023715841800000001"
   name: ""
 podAnnotations: {}
 podLabels: {}
@@ -90,11 +90,11 @@ tolerations: []
 affinity: {}
 secret:
   database:
-    host: database-1.ckekx9n1eyul.ap-northeast-2.rds.amazonaws.com
+    host: ticketing.ckekx9n1eyul.ap-northeast-2.rds.amazonaws.com
     port: 3306
     username: admin
     password: adminadmin
-    name: soyi
+    name: ticketing
   redis:
     host: redis-master.default.svc.cluster.local
     port: 6379
