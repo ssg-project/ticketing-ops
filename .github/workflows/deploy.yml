@@ -22,7 +22,7 @@ jobs:
           helm repo add bitnami https://charts.bitnami.com/bitnami
           helm repo update
 
-          aws eks update-kubeconfig --name soyi_letsgo
+          aws eks update-kubeconfig --name ticketing
 
       - name: Install NGINX Ingress Controller
         run: |
