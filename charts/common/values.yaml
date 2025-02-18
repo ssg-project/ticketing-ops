@@ -28,9 +28,10 @@ kafka:
       transaction.state.log.replication.factor=1
       default.replication.factor=1
       min.insync.replicas=1
-      listeners=PLAINTEXT://:9092
-      advertised.listeners=PLAINTEXT://common-kafka-broker-0.common-kafka-broker-headless.default.svc.cluster.local:9092
-      listener.security.protocol.map=PLAINTEXT:PLAINTEXT
+      listeners=INTERNAL://:9094,EXTERNAL://:9092
+      advertised.listeners=INTERNAL://common-kafka-broker-0.common-kafka-broker-headless.default.svc.cluster.local:9094,EXTERNAL://common-kafka-broker-0.common-kafka-broker-headless.default.svc.cluster.local:9092
+      listener.security.protocol.map=INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      inter.broker.listener.name=INTERNAL
 
     resources:
       requests:
