@@ -26,7 +26,7 @@ securityContext: {}
 # runAsUser: 1000
 
 service:
-  type: ClusterIP
+  type: Ingress
   port: 8000
 ingress:
   enabled: false
