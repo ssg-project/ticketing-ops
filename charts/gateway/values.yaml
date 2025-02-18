@@ -30,7 +30,7 @@ service:
   port: 8000
 ingress:
   enabled: true
-  className: gw
+  className: nginx
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/proxy-connect-timeout: "300"
