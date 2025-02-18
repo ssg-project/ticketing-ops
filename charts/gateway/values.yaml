@@ -94,6 +94,7 @@ secret:
     user: http://user-service.default.svc.cluster.local:8001
     ticketing: http://ticketing-service.default.svc.cluster.local:8002
     event: http://event-service.default.svc.cluster.local:8003
+    gateway: http://gateway.default.svc.cluster.local:8000
   jwt:
     key: secretkey@fornow!
     algorithm: HS256
