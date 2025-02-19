@@ -21,6 +21,7 @@ jobs:
       - name: Deploy to EKS
         run: |
           helm repo add bitnami https://charts.bitnami.com/bitnami
+          helm repo add argo https://argoproj.github.io/argo-helm
           helm repo update
 
           aws eks update-kubeconfig --name ticketing
@@ -39,8 +40,14 @@ jobs:
           pushd charts/common
           helm dependency build
           popd
+
+          pushd charts/argocd
+          helm dependency build
+          popd
           
           helm upgrade --install common ./charts/common
+
+          helm upgrade --install argocd ./charts/argocd -n argocd --create-namespace
           
           for service in gateway fe user websocket event ticket-reservation-consumer ticketing; do
             pushd charts/$service
