@@ -1,0 +1,17 @@
+argo-cd:
+  server:
+    service:
+      type: LoadBalancer
+    ingress:
+      enabled: true
+      hosts:
+        - host: argocd.gmmt.sotre
+          paths:
+            - path: /
+              pathType: Prefix
+  
+  dex:
+    enabled: false  # SSO가 필요없다면 false
+
+  redis:
+    enabled: true
