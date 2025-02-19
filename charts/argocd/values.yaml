@@ -1,7 +1,7 @@
 argo-cd:
   server:
     service:
-      type: LoadBalancer
+      type: ClusterIP
     ingress:
       enabled: true
       hosts:
@@ -9,9 +9,3 @@ argo-cd:
           paths:
             - path: /
               pathType: Prefix
-  
-  dex:
-    enabled: false  # SSO가 필요없다면 false
-
-  redis:
-    enabled: true
