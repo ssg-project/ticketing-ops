@@ -6,9 +6,9 @@ argo-cd:
       enabled: true
       ingressClassName: nginx
       hosts:
-      - host:
+      - host: argocd.gmmt.store
         paths:
-          - path: /argocd
+          - path: /
             pathType: Prefix
       annotations:
         nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
