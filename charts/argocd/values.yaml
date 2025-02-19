@@ -16,7 +16,7 @@ argo-cd:
                 service:
                   name: argocd-server
                   port:
-                    number: 80
+                    number: 8080
       annotations:
         nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
         nginx.ingress.kubernetes.io/proxy-connect-timeout: "30"
