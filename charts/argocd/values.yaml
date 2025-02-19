@@ -4,8 +4,9 @@ argo-cd:
       type: ClusterIP
     ingress:
       enabled: true
+      ingressClassName: nginx
       hosts:
-        - host: argocd.gmmt.sotre
+        - host: argocd.gmmt.store
           paths:
             - path: /
               pathType: Prefix
