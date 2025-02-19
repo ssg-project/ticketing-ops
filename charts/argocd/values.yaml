@@ -2,6 +2,11 @@ argo-cd:
   server:
     service:
       type: ClusterIP
+      ports:
+      - name: http
+        port: 80
+        targetPort: 8080
+        protocol: TCP
     ingress:
       enabled: true
       ingressClassName: nginx
@@ -16,12 +21,15 @@ argo-cd:
                 service:
                   name: argocd-server
                   port:
-                    number: 8080
+                    number: 80
       annotations:
         nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
         nginx.ingress.kubernetes.io/proxy-connect-timeout: "30"
         nginx.ingress.kubernetes.io/proxy-read-timeout: "1800"
         nginx.ingress.kubernetes.io/proxy-send-timeout: "1800"
+        nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+        nginx.ingress.kubernetes.io/ssl-redirect: "false"
+        nginx.ingress.kubernetes.io/proxy-body-size: "0"
   
   redis:
     enabled: true
