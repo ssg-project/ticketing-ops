@@ -7,6 +7,9 @@ argo-cd:
         port: 80
         targetPort: 8080
         protocol: TCP
+    extraArgs:
+      - --insecure
+    ingress:
     ingress:
       enabled: true
       ingressClassName: nginx
@@ -34,3 +37,7 @@ argo-cd:
   
   redis:
     enabled: true
+  
+  configs:
+    params:
+      server.insecure: true
