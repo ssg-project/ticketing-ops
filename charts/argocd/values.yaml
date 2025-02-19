@@ -6,6 +6,8 @@ argo-cd:
       enabled: true
       ingressClassName: nginx
       hosts:
+        - argocd.gmmt.store
+      rules:
         - host: argocd.gmmt.store
           paths:
             - path: /
