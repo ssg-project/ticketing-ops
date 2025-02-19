@@ -5,8 +5,22 @@ argo-cd:
     ingress:
       enabled: true
       ingressClassName: nginx
-      hosts:
-        - host: argocd.gmmt.store
-          paths:
-            - path: /
-              pathType: Prefix
+      hosts: 
+        - "argocd.gmmt.store"
+      rules:
+        - host: "argocd.gmmt.store"
+          http:
+            paths:
+              - path: /
+                pathType: Prefix
+                backend:
+                  service:
+                    name: argocd-server
+                    port:
+                      number: 80
+  
+  redis:
+    enabled: true
+  
+  dex:
+    enabled: false
