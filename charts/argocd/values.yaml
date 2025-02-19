@@ -5,22 +5,15 @@ argo-cd:
     ingress:
       enabled: true
       ingressClassName: nginx
-      hosts: 
-        - "argocd.gmmt.store"
-      rules:
-        - host: "argocd.gmmt.store"
-          http:
-            paths:
-              - path: /
-                pathType: Prefix
-                backend:
-                  service:
-                    name: argocd-server
-                    port:
-                      number: 80
+      hosts:
+      - host:
+        paths:
+          - path: /argocd
+            pathType: Prefix
+      annotations:
+        nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+        nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+        nginx.ingress.kubernetes.io/backend-protocol: "HTTPS" 
   
   redis:
     enabled: true
-  
-  dex:
-    enabled: false
