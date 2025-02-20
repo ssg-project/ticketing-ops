@@ -75,7 +75,7 @@ jobs:
           
           for service in gateway fe user websocket event ticket-reservation-consumer ticketing; do
             helm upgrade --install ${service} oci://ghcr.io/${{ github.repository }}/charts/${service} \
-              -f ./charts/${service}/values.yaml
+              -f ./charts/${service}/values.yaml -n default
             
             kubectl rollout restart deployment ${service}
           done
