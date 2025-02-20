@@ -2,7 +2,7 @@ replicaCount: 1
 image:
   repository: 206177862976.dkr.ecr.ap-northeast-2.amazonaws.com/ticketing/api-websocket
   pullPolicy: Always
-  tag: d3b02a45774e1537af5f7dc1c133445fc2242033
+  tag: 41f9994ee655d3c21bee9bff7b9b5aa55006153b
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
