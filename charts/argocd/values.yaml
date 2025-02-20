@@ -10,7 +10,6 @@ argo-cd:
     extraArgs:
       - --insecure
     ingress:
-    ingress:
       enabled: true
       ingressClassName: nginx
       hosts:
