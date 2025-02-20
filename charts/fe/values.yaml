@@ -2,7 +2,7 @@ replicaCount: 1
 image:
   repository: 206177862976.dkr.ecr.ap-northeast-2.amazonaws.com/ticketing/web
   pullPolicy: Always
-  tag: 99962a8b830efbcd830c221113cc4492f1e1157e
+  tag: 4d5008767fe700dac5621947d90fb336c92fa148
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
@@ -95,4 +95,3 @@ secret:
     url: http://gateway.default.svc.cluster.local:8000
   websocket:
     server_url: websocket.default.svc.cluster.local:9000
-
