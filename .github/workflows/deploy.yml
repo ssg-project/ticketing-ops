@@ -3,7 +3,7 @@ name: deploy
 on:
   push:
     branches: ['main']
-    # paths-ignore: ['.github/**']
+    paths-ignore: ['.github/**']
 
 jobs:
   deploy:
@@ -79,3 +79,12 @@ jobs:
             
             kubectl rollout restart deployment ${service}
           done
+      
+      - name: Slack Notification
+        if: always()
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_COLOR: ${{ job.status }}
+          SLACK_MESSAGE: 'updated ${{ job.status }}'
+          SLACK_TITLE: 'Ops Status'
