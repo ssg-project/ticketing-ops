@@ -42,7 +42,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           envFrom:
             - secretRef:
-                name: ticket-reservation-consumer-db-secret            
+                name: ticket-reservation-consumer-db-secret
           ports:
           - containerPort: 9093
           {{- with .Values.livenessProbe }}
