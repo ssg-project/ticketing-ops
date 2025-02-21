@@ -42,18 +42,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           envFrom:
             - secretRef:
-                name: user-db-secret
-          env:
-            - name: KAFKA_BROKER_URL
-              value: {{ .Values.secret.kafka.broker_url | quote }}
-            - name: KAFKA_TOPIC
-              value: {{ .Values.secret.kafka.topic | quote }}
-            - name: REDIS_HOST
-              value: {{ .Values.secret.redis.host | quote }}
-            - name: REDIS_PORT
-              value: {{ .Values.secret.redis.port | quote }}
-            - name: WEBSOCKET_SERVER_URL
-              value: {{ .Values.secret.websocket.server_url | quote }}                
+                name: ticket-reservation-consumer-db-secret            
           ports:
           - containerPort: 9093
           {{- with .Values.livenessProbe }}
