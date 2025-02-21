@@ -3,7 +3,7 @@ image:
   repository: 206177862976.dkr.ecr.ap-northeast-2.amazonaws.com/ticketing/api-event-service
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "4824f8920756364ed817aacf548f50fbe91e0772"
+  tag: "dd148502183fc0c2a5827a79fb940294af4eeca4"
 # This is for the secrets for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 imagePullSecrets: []
 nameOverride: ""
