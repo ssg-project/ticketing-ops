@@ -42,7 +42,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           envFrom:
             - secretRef:
-                name: {{ .Release.Name }}-db-secret
+                name: ticket-reservation-consumer-db-secret
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
