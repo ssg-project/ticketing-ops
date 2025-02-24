@@ -94,4 +94,4 @@ secret:
     host: redis-master.default.svc.cluster.local
     port: 6379
   websocket:
-    server_url: websocket.default.svc.cluster.local:9000
+    server_url: ws://websocket.default.svc.cluster.local:9000
