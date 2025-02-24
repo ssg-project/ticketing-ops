@@ -42,7 +42,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           envFrom:
             - secretRef:
-                name: ticket-reservation-consumer-db-secret
+                name: {{ .Release.Name }}-db-secret
           env:
             - name: APP_ENV
               value: prod
