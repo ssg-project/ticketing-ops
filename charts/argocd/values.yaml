@@ -40,3 +40,17 @@ argo-cd:
   configs:
     params:
       server.insecure: true
+
+  applications:
+    - name: default-app
+      namespace: argocd
+      annotations:
+        notifications.argoproj.io/subscriptions: |
+          - trigger: [on-scaling-replica-set, on-rollout-updated, on-rollout-step-completed]
+            destinations:
+              - service: slack
+                recipients: argocd-alert
+          - trigger: [on-rollout-aborted, on-analysis-run-failed, on-analysis-run-error]
+            destinations:
+              - service: slack
+                recipients: argocd-alert
