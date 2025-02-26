@@ -1,4 +1,6 @@
 argo-cd:
+  notifications:
+    enabled: true
   server:
     service:
       type: ClusterIP
@@ -40,6 +42,71 @@ argo-cd:
   configs:
     params:
       server.insecure: true
+    secret:
+      notifications.slack: |
+        token: xoxb-7743683724791-8500100668161-2iOiEvynRKViBsPCNzrCdA7I
+        username: ArgoCD
+        icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
+    cm:
+      notifications.template.slack: |
+        message: |
+          {{if eq .notificationType "slack"}}
+          {
+            "blocks": [
+              {
+                "type": "header",
+                "text": {
+                  "type": "plain_text",
+                  "text": "{{.app.metadata.name}}: {{.app.status.operationState.message}}",
+                  "emoji": true
+                }
+              },
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "*애플리케이션:* {{.app.metadata.name}}\n*상태:* {{.app.status.sync.status}}\n*작업:* {{.app.status.operationState.operation.sync.revision}}"
+                }
+              }
+            ]
+          }
+          {{else}}
+          {{ (call .webhook.slack.attachments .) }}
+          {{end}}
+      
+      # Notification 트리거 설정
+      notifications.trigger.on-scaling-replica-set: |
+        - description: Application replica set scaling
+          send: [slack]
+          when: app.status.operationState.phase in ['Running'] and app.status.operationState.message contains 'replica set'
+      notifications.trigger.on-rollout-updated: |
+        - description: Application rollout updated
+          send: [slack]
+          when: app.status.operationState.phase in ['Succeeded'] and app.status.operationState.message contains 'updated'
+      notifications.trigger.on-rollout-step-completed: |
+        - description: Application rollout step completed
+          send: [slack]
+          when: app.status.operationState.phase in ['Succeeded'] and app.status.operationState.message contains 'completed'
+      notifications.trigger.on-rollout-aborted: |
+        - description: Application rollout aborted
+          send: [slack]
+          when: app.status.operationState.phase in ['Failed'] and app.status.operationState.message contains 'aborted'
+      notifications.trigger.on-analysis-run-failed: |
+        - description: Analysis run failed
+          send: [slack]
+          when: app.status.operationState.phase in ['Failed'] and app.status.operationState.message contains 'analysis'
+      notifications.trigger.on-analysis-run-error: |
+        - description: Analysis run error
+          send: [slack]
+          when: app.status.operationState.phase in ['Error'] and app.status.operationState.message contains 'analysis'
+      notifications.service.slack: |
+        token: $notifications-slack-token
+        username: ArgoCD Notifications
+        icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
+        recipients:
+          - name: argocd-alert
+            channels:
+              - '#argocd-alert'
 
   applications:
     - name: default-app
