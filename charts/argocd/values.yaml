@@ -45,7 +45,7 @@ argo-cd:
     params:
       server.insecure: true
     secret:
-      slack-token: https://hooks.slack.com/services/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
+      slack-token: https://hooks.slack.com/services/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
       notifications.slack: |
         token: $slack-token
         username: ArgoCD
