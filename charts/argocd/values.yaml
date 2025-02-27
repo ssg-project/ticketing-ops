@@ -44,8 +44,6 @@ argo-cd:
   configs:
     params:
       server.insecure: true
-    secret:
-      slack-webhook-url: https://hooks.slack.com/services/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
 
     cm:
       context: |
@@ -123,7 +121,7 @@ argo-cd:
           when: app.status.sync.status != app.status.operationState.syncResult.status and app.status.operationState != null
 
       notifications.service.slack: |
-        webhook: $slack-webhook-url
+        webhook: https://hooks.slack.com/services/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
         username: ArgoCD Notifications
         icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
         recipients:
