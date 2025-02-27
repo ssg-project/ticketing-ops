@@ -86,22 +86,27 @@ argo-cd:
         - description: Application replica set scaling
           send: [slack]
           when: app.status.operationState.phase in ['Running'] and app.status.operationState.message contains 'replica set'
+
       notifications.trigger.on-rollout-updated: |
         - description: Application rollout updated
           send: [slack]
           when: app.status.operationState.phase in ['Succeeded'] and app.status.operationState.message contains 'updated'
+
       notifications.trigger.on-rollout-step-completed: |
         - description: Application rollout step completed
           send: [slack]
           when: app.status.operationState.phase in ['Succeeded'] and app.status.operationState.message contains 'completed'
+
       notifications.trigger.on-rollout-aborted: |
         - description: Application rollout aborted
           send: [slack]
           when: app.status.operationState.phase in ['Failed'] and app.status.operationState.message contains 'aborted'
+
       notifications.trigger.on-analysis-run-failed: |
         - description: Analysis run failed
           send: [slack]
           when: app.status.operationState.phase in ['Failed'] and app.status.operationState.message contains 'analysis'
+
       notifications.trigger.on-analysis-run-error: |
         - description: Analysis run error
           send: [slack]
@@ -111,14 +116,26 @@ argo-cd:
         - description: Application synchronized successfully
           send: [slack]
           when: app.status.operationState.phase == 'Succeeded' and app.status.operationState.operation.sync != null
+
       notifications.trigger.on-sync-failed: |
         - description: Application synchronization failed
           send: [slack]
           when: app.status.operationState.phase == 'Failed' and app.status.operationState.operation.sync != null
+
       notifications.trigger.on-sync-status-change: |
         - description: Application sync status changed
           send: [slack]
-          when: app.status.sync.status != app.status.operationState.syncResult.status and app.status.operationState != null
+          when: app.status.sync.status != 'Synced'
+
+      notifications.trigger.on-out-of-sync: |
+        - description: Application is out of sync
+          send: [slack]
+          when: app.status.sync.status == 'OutOfSync'
+
+      notifications.trigger.on-health-degraded: |
+        - description: Application health status degraded
+          send: [slack]
+          when: app.status.health.status == 'Degraded'
 
       notifications.service.slack: |
         webhook: https://hooks.slack.com/services/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
