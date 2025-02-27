@@ -1,9 +1,6 @@
-name: deploy
+name: argocd + common(redis, kafka) deploy
 
 on:
-  push:
-    paths-ignore:
-      - '.github/**'
   workflow_dispatch:
 
 jobs:

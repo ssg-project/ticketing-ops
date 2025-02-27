@@ -1,9 +1,6 @@
-name: deploy
+name: deploy all + install nginx
 
 on:
-  push:
-    # branches: ['main']
-    paths-ignore: ['.github/**']
   workflow_dispatch:
 
 jobs:
