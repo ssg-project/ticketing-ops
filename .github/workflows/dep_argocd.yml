@@ -35,6 +35,7 @@ jobs:
           helm dependency build
           popd
           
-          helm upgrade --install common ./charts/common
+          export INTER_BROKER_PASSWORD=$(kubectl get secret --namespace "default" common-kafka-user-passwords -o jsonpath="{.data.inter-broker-password}" | base64 -d)
+          helm upgrade --install common ./charts/common --set kafka.sasl.interbroker.password=$INTER_BROKER_PASSWORD
 
           helm upgrade --install argocd ./charts/argocd -n argocd --create-namespace
