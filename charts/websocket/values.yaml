@@ -10,7 +10,7 @@ serviceAccount:
   create: true
   automount: true
   annotations:
-    eks.amazonaws.com/role-arn: "arn:aws:iam::206177862976:role/ticketing-cluster-20250220015209647600000002"
+    eks.amazonaws.com/role-arn: "arn:aws:iam::206177862976:role/karpenter-cls-cluster-20250227022324796100000002"
   name: ""
 podAnnotations: {}
 podLabels: {}
