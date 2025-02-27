@@ -2,7 +2,7 @@ replicaCount: 1
 image:
   repository: 206177862976.dkr.ecr.ap-northeast-2.amazonaws.com/ticketing/web
   pullPolicy: Always
-  tag: 86f0f4077e3f9c92e2fbed1cedaa57695d78d66b
+  tag: 00b650336c01b85f31505f72ac81c8b083b03efe
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
