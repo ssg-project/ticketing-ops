@@ -1,90 +1,62 @@
-# name: deploy
+name: deploy
 
-# on:
-#   push:
-#     branches: ['main']
-#     paths-ignore: ['.github/**']
+on:
+  push:
+    # branches: ['main']
+    paths-ignore: ['.github/**']
+  workflow_dispatch:
 
-# jobs:
-#   deploy:
-#     runs-on: ubuntu-latest
-#     permissions:
-#       contents: read
-#       packages: write
-    
-#     steps:
-#       - uses: actions/checkout@v2
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
       
-#       - name: Configure AWS credentials
-#         uses: aws-actions/configure-aws-credentials@v1
-#         with:
-#           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#           aws-region: ap-northeast-2
-
-#       - name: Login to GHCR
-#         uses: docker/login-action@v2
-#         with:
-#           registry: ghcr.io
-#           username: ${{ github.actor }}
-#           password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
         
-#       - name: Deploy to EKS
-#         run: |
-#           helm repo add bitnami https://charts.bitnami.com/bitnami
-#           helm repo add argo https://argoproj.github.io/argo-helm
-#           helm repo update
+      - name: Deploy to EKS
+        run: |
+          helm repo add bitnami https://charts.bitnami.com/bitnami
+          helm repo add argo https://argoproj.github.io/argo-helm
+          helm repo update
 
-#           aws eks update-kubeconfig --name ticketing
+          aws eks update-kubeconfig --name karpenter-cls
 
-#       - name: Install NGINX Ingress Controller
-#         run: |
-#           if ! helm list -n ingress-nginx | grep -q ingress-nginx; then
-#             helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-#             helm repo update
-#             helm upgrade --install ingress-nginx ingress-nginx/ingress-nginx \
-#               --namespace ingress-nginx --create-namespace
-#           fi
+      - name: Install NGINX Ingress Controller
+        run: |
+          if ! helm list -n ingress-nginx | grep -q ingress-nginx; then
+            helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+            helm repo update
+            helm upgrade --install ingress-nginx ingress-nginx/ingress-nginx \
+              --namespace ingress-nginx --create-namespace
+          fi
 
-#       - name: Package and Push Helm Charts
-#         run: |
-#           pushd charts/common
-#           helm dependency build
-#           helm package .
-#           helm push common-*.tgz oci://ghcr.io/${{ github.repository }}/charts
-#           popd
+      - name: Deploy Helm Charts
+        run: |
+          pushd charts/common
+          helm dependency build
+          popd
 
-#           pushd charts/argocd
-#           helm dependency build
-#           helm package .
-#           helm push argocd-*.tgz oci://ghcr.io/${{ github.repository }}/charts
-#           popd
+          pushd charts/argocd
+          helm dependency build
+          popd
           
-#           for service in gateway fe user websocket event ticket-reservation-consumer ticketing; do
-#             pushd charts/$service
-#             helm dependency build
-#             helm package .
-#             helm push ${service}-*.tgz oci://ghcr.io/${{ github.repository }}/charts
-#             popd
-#           done
+          helm upgrade --install common ./charts/common
 
-#       - name: Deploy Helm Charts
-#         run: |
-#           helm upgrade --install common oci://ghcr.io/${{ github.repository }}/charts/common
-#           helm upgrade --install argocd oci://ghcr.io/${{ github.repository }}/charts/argocd -n argocd --create-namespace
+          helm upgrade --install argocd ./charts/argocd -n argocd --create-namespace
           
-#           for service in gateway fe user websocket event ticket-reservation-consumer ticketing; do
-#             helm upgrade --install ${service} oci://ghcr.io/${{ github.repository }}/charts/${service} \
-#               -f ./charts/${service}/values.yaml -n default
+          for service in gateway fe user websocket event ticket-reservation-consumer ticketing; do
+            pushd charts/$service
+            helm dependency build
+            popd
+
+            helm upgrade --install ${service} ./charts/$service \
+              -f ./charts/${service}/values.yaml
             
-#             kubectl rollout restart deployment ${service}
-#           done
-      
-#       - name: Slack Notification
-#         if: always()
-#         uses: rtCamp/action-slack-notify@v2
-#         env:
-#           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-#           SLACK_COLOR: ${{ job.status }}
-#           SLACK_MESSAGE: 'updated ${{ job.status }}'
-#           SLACK_TITLE: 'Ops Status'
+            kubectl rollout restart deployment ${service}
+          done
