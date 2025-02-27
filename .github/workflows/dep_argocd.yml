@@ -19,6 +19,7 @@ jobs:
         
       - name: Deploy to EKS
         run: |
+          helm repo add bitnami https://charts.bitnami.com/bitnami
           helm repo add argo https://argoproj.github.io/argo-helm
           helm repo update
 
