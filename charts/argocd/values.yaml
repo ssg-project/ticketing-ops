@@ -115,12 +115,12 @@ argo-cd:
       notifications.trigger.on-sync-succeeded: |
         - description: Application synchronized successfully
           send: [slack]
-          when: app.status.operationState.phase == 'Succeeded' and app.status.operationState.operation.sync != null
+          when: app.status.operationState.phase == 'Succeeded'
 
       notifications.trigger.on-sync-failed: |
         - description: Application synchronization failed
           send: [slack]
-          when: app.status.operationState.phase == 'Failed' and app.status.operationState.operation.sync != null
+          when: app.status.operationState.phase == 'Failed'
 
       notifications.trigger.on-sync-status-change: |
         - description: Application sync status changed
@@ -136,6 +136,11 @@ argo-cd:
         - description: Application health status degraded
           send: [slack]
           when: app.status.health.status == 'Degraded'
+      
+      notifications.trigger.on-test: |
+        - description: Test notification
+          send: [slack]
+          when: "true"
 
       notifications.service.slack: |
         webhook: https://hooks.slack.com/services/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
@@ -151,7 +156,7 @@ argo-cd:
       namespace: argocd
       annotations:
         notifications.argoproj.io/subscriptions: |
-          - trigger: [on-scaling-replica-set, on-rollout-updated, on-rollout-step-completed, on-sync-succeeded, on-sync-failed, on-sync-status-change]
+          - trigger: [on-scaling-replica-set, on-rollout-updated, on-rollout-step-completed, on-sync-succeeded, on-sync-failed, on-sync-status-change, on-out-of-sync, on-health-degraded, on-test]
             destinations:
               - service: slack
                 recipients: argocd-alert
@@ -164,7 +169,7 @@ argo-cd:
       namespace: default
       annotations:
         notifications.argoproj.io/subscriptions: |
-          - trigger: [on-scaling-replica-set, on-rollout-updated, on-rollout-step-completed, on-sync-succeeded, on-sync-failed, on-sync-status-change]
+          - trigger: [on-scaling-replica-set, on-rollout-updated, on-rollout-step-completed, on-sync-succeeded, on-sync-failed, on-sync-status-change, on-out-of-sync, on-health-degraded, on-test]
             destinations:
               - service: slack
                 recipients: argocd-alert
@@ -177,7 +182,7 @@ argo-cd:
       namespace: default
       annotations:
         notifications.argoproj.io/subscriptions: |
-          - trigger: [on-scaling-replica-set, on-rollout-updated, on-rollout-step-completed, on-sync-succeeded, on-sync-failed, on-sync-status-change]
+          - trigger: [on-scaling-replica-set, on-rollout-updated, on-rollout-step-completed, on-sync-succeeded, on-sync-failed, on-sync-status-change, on-out-of-sync, on-health-degraded, on-test]
             destinations:
               - service: slack
                 recipients: argocd-alert
@@ -190,7 +195,7 @@ argo-cd:
       namespace: default
       annotations:
         notifications.argoproj.io/subscriptions: |
-          - trigger: [on-scaling-replica-set, on-rollout-updated, on-rollout-step-completed, on-sync-succeeded, on-sync-failed, on-sync-status-change]
+          - trigger: [on-scaling-replica-set, on-rollout-updated, on-rollout-step-completed, on-sync-succeeded, on-sync-failed, on-sync-status-change, on-out-of-sync, on-health-degraded, on-test]
             destinations:
               - service: slack
                 recipients: argocd-alert
@@ -203,7 +208,7 @@ argo-cd:
       namespace: default
       annotations:
         notifications.argoproj.io/subscriptions: |
-          - trigger: [on-scaling-replica-set, on-rollout-updated, on-rollout-step-completed, on-sync-succeeded, on-sync-failed, on-sync-status-change]
+          - trigger: [on-scaling-replica-set, on-rollout-updated, on-rollout-step-completed, on-sync-succeeded, on-sync-failed, on-sync-status-change, on-out-of-sync, on-health-degraded, on-test]
             destinations:
               - service: slack
                 recipients: argocd-alert
@@ -216,7 +221,7 @@ argo-cd:
       namespace: default
       annotations:
         notifications.argoproj.io/subscriptions: |
-          - trigger: [on-scaling-replica-set, on-rollout-updated, on-rollout-step-completed, on-sync-succeeded, on-sync-failed, on-sync-status-change]
+          - trigger: [on-scaling-replica-set, on-rollout-updated, on-rollout-step-completed, on-sync-succeeded, on-sync-failed, on-sync-status-change, on-out-of-sync, on-health-degraded, on-test]
             destinations:
               - service: slack
                 recipients: argocd-alert
@@ -229,7 +234,7 @@ argo-cd:
       namespace: default
       annotations:
         notifications.argoproj.io/subscriptions: |
-          - trigger: [on-scaling-replica-set, on-rollout-updated, on-rollout-step-completed, on-sync-succeeded, on-sync-failed, on-sync-status-change]
+          - trigger: [on-scaling-replica-set, on-rollout-updated, on-rollout-step-completed, on-sync-succeeded, on-sync-failed, on-sync-status-change, on-out-of-sync, on-health-degraded, on-test]
             destinations:
               - service: slack
                 recipients: argocd-alert
@@ -242,7 +247,7 @@ argo-cd:
       namespace: default
       annotations:
         notifications.argoproj.io/subscriptions: |
-          - trigger: [on-scaling-replica-set, on-rollout-updated, on-rollout-step-completed, on-sync-succeeded, on-sync-failed, on-sync-status-change]
+          - trigger: [on-scaling-replica-set, on-rollout-updated, on-rollout-step-completed, on-sync-succeeded, on-sync-failed, on-sync-status-change, on-out-of-sync, on-health-degraded, on-test]
             destinations:
               - service: slack
                 recipients: argocd-alert
