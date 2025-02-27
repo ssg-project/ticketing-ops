@@ -130,8 +130,99 @@ argo-cd:
               - '#argocd-alert'
 
   applications:
-    - name: default-app
+    - name: argocd
       namespace: argocd
+      annotations:
+        notifications.argoproj.io/subscriptions: |
+          - trigger: [on-scaling-replica-set, on-rollout-updated, on-rollout-step-completed, on-sync-succeeded, on-sync-failed, on-sync-status-change]
+            destinations:
+              - service: slack
+                recipients: argocd-alert
+          - trigger: [on-rollout-aborted, on-analysis-run-failed, on-analysis-run-error]
+            destinations:
+              - service: slack
+                recipients: argocd-alert
+                
+    - name: event
+      namespace: default
+      annotations:
+        notifications.argoproj.io/subscriptions: |
+          - trigger: [on-scaling-replica-set, on-rollout-updated, on-rollout-step-completed, on-sync-succeeded, on-sync-failed, on-sync-status-change]
+            destinations:
+              - service: slack
+                recipients: argocd-alert
+          - trigger: [on-rollout-aborted, on-analysis-run-failed, on-analysis-run-error]
+            destinations:
+              - service: slack
+                recipients: argocd-alert
+                
+    - name: user
+      namespace: default
+      annotations:
+        notifications.argoproj.io/subscriptions: |
+          - trigger: [on-scaling-replica-set, on-rollout-updated, on-rollout-step-completed, on-sync-succeeded, on-sync-failed, on-sync-status-change]
+            destinations:
+              - service: slack
+                recipients: argocd-alert
+          - trigger: [on-rollout-aborted, on-analysis-run-failed, on-analysis-run-error]
+            destinations:
+              - service: slack
+                recipients: argocd-alert
+                
+    - name: ticketing
+      namespace: default
+      annotations:
+        notifications.argoproj.io/subscriptions: |
+          - trigger: [on-scaling-replica-set, on-rollout-updated, on-rollout-step-completed, on-sync-succeeded, on-sync-failed, on-sync-status-change]
+            destinations:
+              - service: slack
+                recipients: argocd-alert
+          - trigger: [on-rollout-aborted, on-analysis-run-failed, on-analysis-run-error]
+            destinations:
+              - service: slack
+                recipients: argocd-alert
+                
+    - name: gateway
+      namespace: default
+      annotations:
+        notifications.argoproj.io/subscriptions: |
+          - trigger: [on-scaling-replica-set, on-rollout-updated, on-rollout-step-completed, on-sync-succeeded, on-sync-failed, on-sync-status-change]
+            destinations:
+              - service: slack
+                recipients: argocd-alert
+          - trigger: [on-rollout-aborted, on-analysis-run-failed, on-analysis-run-error]
+            destinations:
+              - service: slack
+                recipients: argocd-alert
+                
+    - name: fe
+      namespace: default
+      annotations:
+        notifications.argoproj.io/subscriptions: |
+          - trigger: [on-scaling-replica-set, on-rollout-updated, on-rollout-step-completed, on-sync-succeeded, on-sync-failed, on-sync-status-change]
+            destinations:
+              - service: slack
+                recipients: argocd-alert
+          - trigger: [on-rollout-aborted, on-analysis-run-failed, on-analysis-run-error]
+            destinations:
+              - service: slack
+                recipients: argocd-alert
+                
+    - name: websocket
+      namespace: default
+      annotations:
+        notifications.argoproj.io/subscriptions: |
+          - trigger: [on-scaling-replica-set, on-rollout-updated, on-rollout-step-completed, on-sync-succeeded, on-sync-failed, on-sync-status-change]
+            destinations:
+              - service: slack
+                recipients: argocd-alert
+          - trigger: [on-rollout-aborted, on-analysis-run-failed, on-analysis-run-error]
+            destinations:
+              - service: slack
+                recipients: argocd-alert
+                
+    - name: ticketing-consumer
+      namespace: default
       annotations:
         notifications.argoproj.io/subscriptions: |
           - trigger: [on-scaling-replica-set, on-rollout-updated, on-rollout-step-completed, on-sync-succeeded, on-sync-failed, on-sync-status-change]
