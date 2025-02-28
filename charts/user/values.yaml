@@ -2,7 +2,7 @@ replicaCount: 1
 image:
   repository: 206177862976.dkr.ecr.ap-northeast-2.amazonaws.com/ticketing/api-user-service
   pullPolicy: Always
-  tag: d8d046d660ed3a22effd378637ceb5ec7fdb0f7b
+  tag: 183424f591b1c2bca652386a81291d04b4f167f7
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
@@ -13,7 +13,7 @@ serviceAccount:
     eks.amazonaws.com/role-arn: "arn:aws:iam::206177862976:role/karpenter-cls-cluster-20250227022324796100000002"
   name: ""
 podAnnotations: {}
-podLabels: 
+podLabels:
   app: ticketing
 podSecurityContext: {}
 # fsGroup: 2000
