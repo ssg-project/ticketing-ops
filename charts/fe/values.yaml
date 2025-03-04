@@ -30,7 +30,7 @@ service:
   port: 5000
 ingress:
   enabled: true
-  className: nginx
+  className: alb
   annotations:
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/scheme: internet-facing

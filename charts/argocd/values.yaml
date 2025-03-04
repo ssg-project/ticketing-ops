@@ -11,7 +11,7 @@ argo-cd:
       - --insecure
     ingress:
       enabled: true
-      ingressClassName: nginx
+      ingressClassName: alb
       hosts:
         - argocd.gmmt.store
       rules:
@@ -25,14 +25,11 @@ argo-cd:
                   port:
                     number: 80
       annotations:
-        nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-        nginx.ingress.kubernetes.io/proxy-connect-timeout: "30"
-        nginx.ingress.kubernetes.io/proxy-read-timeout: "1800"
-        nginx.ingress.kubernetes.io/proxy-send-timeout: "1800"
-        nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
-        nginx.ingress.kubernetes.io/ssl-redirect: "false"
-        nginx.ingress.kubernetes.io/proxy-body-size: "0"
-        nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+        alb.ingress.kubernetes.io/target-type: ip
+        alb.ingress.kubernetes.io/scheme: internet-facing
+        alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:206177862976:certificate/89e2b200-d921-4c29-b6e5-5a51f5a4d2be
+        alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80}, {"HTTPS":443}]'
+        alb.ingress.kubernetes.io/ssl-redirect: '443'
   
   redis:
     enabled: true
