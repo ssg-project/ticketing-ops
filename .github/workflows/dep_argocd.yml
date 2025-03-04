@@ -22,7 +22,7 @@ jobs:
           helm repo add argo https://argoproj.github.io/argo-helm
           helm repo update
 
-          aws eks update-kubeconfig --name ticketing
+          aws eks update-kubeconfig --name karpenter-cls
 
       - name: Deploy Helm Charts
         run: |
