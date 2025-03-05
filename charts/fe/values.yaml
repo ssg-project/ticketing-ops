@@ -32,8 +32,6 @@ ingress:
   enabled: true
   className: alb
   annotations:
-    alb.ingress.kubernetes.io/load-balancer-name: my-alb
-    kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/group.name: alb-group
     alb.ingress.kubernetes.io/scheme: internet-facing
