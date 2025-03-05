@@ -29,7 +29,7 @@ service:
   type: ClusterIP
   port: 8000
 ingress:
-  enabled: true
+  enabled: false
   className: alb
   annotations:
     alb.ingress.kubernetes.io/load-balancer-name: my-alb
