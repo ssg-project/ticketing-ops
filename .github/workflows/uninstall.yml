@@ -1,0 +1,35 @@
+name: Uninstall all services
+
+on:
+  workflow_dispatch:
+
+jobs:
+  uninstall:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
+      
+      - name: Connect to EKS
+        run: |
+          aws eks update-kubeconfig --name ticketing-cluster
+      
+      - name: Uninstall all Helm releases
+        run: |
+          for service in gateway fe user websocket event ticket-reservation-consumer ticketing; do
+            helm uninstall ${service} || true
+          done
+          
+          helm uninstall argocd -n argocd || true
+          kubectl delete namespace argocd --ignore-not-found=true
+          
+          helm uninstall common || true
+          
+          helm uninstall ingress-nginx -n ingress-nginx || true
+          kubectl delete namespace ingress-nginx --ignore-not-found=true
