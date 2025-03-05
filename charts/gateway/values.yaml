@@ -34,7 +34,7 @@ ingress:
   annotations:
     alb.ingress.kubernetes.io/load-balancer-name: my-alb
     alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/group.name: ingress-group.gateway
+    alb.ingress.kubernetes.io/group.name: ingress-group.gateway-ing
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:206177862976:certificate/89e2b200-d921-4c29-b6e5-5a51f5a4d2be
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80}, {"HTTPS":443}]'
