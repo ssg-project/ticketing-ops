@@ -1,0 +1,97 @@
+global:
+  storageClass: "gp2"
+
+# kube-prometheus-stack 설정
+kube-prometheus-stack:
+  prometheus:
+    retention: "30d"  # Prometheus 데이터 보존 기간
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: gp2
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 5Gi  # Prometheus 데이터 저장소 크기
+
+  grafana:
+    enabled: true
+    adminPassword: "admin"  # Grafana 비번
+    
+# loki 설정
+loki:
+  enabled: true
+  isDefault: true
+  url: http://{{ (include "loki.serviceName" .) }}:{{ .Values.loki.service.port }}
+  readinessProbe:
+    httpGet:
+      path: /ready
+      port: http-metrics
+    initialDelaySeconds: 45
+  livenessProbe:
+    httpGet:
+      path: /ready
+      port: http-metrics
+    initialDelaySeconds: 45
+  datasource:
+    jsonData: "{}"
+    uid: ""
+  persistence:
+    enabled: true
+    storageClassName: gp2
+    size: 5Gi
+  # config:
+  #   schema_config:
+  #     configs:
+  #       - from: "2020-09-07"
+  #         store: boltdb-shipper
+  #         object_store: s3
+  #         schema: v11
+  #         index:
+  #           prefix: loki_index_
+  #           period: 24h
+  #   storage_config:
+  #     aws:
+  #       s3: s3://ticketing-app-log
+  #       region: ap-northeast-2
+  #       access_key_id: AKIATAAJIQVAFJA2VGRB
+  #       secret_access_key: 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
+  #     boltdb_shipper:
+  #       active_index_directory: /data/loki/boltdb-shipper-active
+  #       shared_store: s3
+  storage:
+    bucketNames:
+      chunks: tickeing-app-log
+      ruler: tickeing-app-log
+      admin: tickeing-app-log
+    type: s3
+    s3:
+      s3:  tickeing-app-log
+      endpoint: null
+      region: ap-northeast-2
+      accessKeyId: AKIATAAJIQVAFJA2VGRB
+      secretAccessKey: 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
+      s3ForcePathStyle: false
+      insecure: false
+
+# promtail 설정
+promtail:
+  enabled: true
+  config:
+    logLevel: info
+    logFormat: logfmt
+    serverPort: 3101
+    clients:
+      - url: http://loki.monitoring-system.svc.cluster.local:3100/loki/api/v1/push
+  scrape_configs:
+    - job_name: app-logs
+      kubernetes_sd_configs:
+        - role: pod
+      relabel_configs:
+        - target_label: 'app'
+          replacement: 'ticketing'
+        # - target-label: 'env'
+        #   replacement: 'prod'
+  
+grafana:
+  enabled: false

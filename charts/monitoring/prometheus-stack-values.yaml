@@ -1,0 +1,152 @@
+prometheus:
+  enabled: true
+  prometheusSpec:
+    retention: 30d
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 30Gi
+          storageClassName: gp2
+    serviceMonitorSelectorNilUsesHelmValues: false
+    serviceMonitorSelector:
+      matchLabels:
+        app: ticketing
+    serviceMonitorNamespaceSelector: {}
+    replicas: 1
+    # additionalScrapeConfigs:
+    #   - job_name: fe-service # job name
+    #     metrics_path: /metrics
+    #     kubernetes_sd_configs:
+    #       - role: endpoints
+    #     relabel_configs:
+    #       - source_labels: [app.kubernetes.io/name]
+    #         action: replace
+    #         targetLabel: job
+    #         regex: fe
+    #         replacement: fe-service
+
+    #   - job_name: gateway-service # job name
+    #     metrics_path: /metrics
+    #     kubernetes_sd_configs:
+    #       - role: endpoints
+    #     relabel_configs:
+    #       - source_labels: [app.kubernetes.io/name]
+    #         action: replace
+    #         targetLabel: job
+    #         regex: gateway
+    #         replacement: gateway-service
+
+    #   - job_name: event-service # job name
+    #     metrics_path: /metrics
+    #     kubernetes_sd_configs:
+    #       - role: endpoints
+    #     relabel_configs:
+    #       - source_labels: [app.kubernetes.io/name]
+    #         action: replace
+    #         targetLabel: job
+    #         regex: event
+    #         replacement: event-service
+
+    #   - job_name: ticketing-service # job name
+    #     metrics_path: /metrics
+    #     kubernetes_sd_configs:
+    #       - role: endpoints
+    #     relabel_configs:
+    #       - source_labels: [app.kubernetes.io/name]
+    #         action: replace
+    #         targetLabel: job
+    #         regex: ticketing
+    #         replacement: ticketing-service
+
+    #   - job_name: user-service # job name
+    #     metrics_path: /metrics
+    #     kubernetes_sd_configs:
+    #       - role: endpoints
+    #     relabel_configs:
+    #       - source_labels: [app.kubernetes.io/name]
+    #         action: replace
+    #         targetLabel: job
+    #         regex: user
+    #         replacement: user-service
+
+    #   - job_name: websocket-service # job name
+    #     metrics_path: /metrics
+    #     kubernetes_sd_configs:
+    #       - role: endpoints
+    #     relabel_configs:
+    #       - source_labels: [app.kubernetes.io/name]
+    #         action: replace
+    #         targetLabel: job
+    #         regex: websocket
+    #         replacement: websocket-service
+
+    #   - job_name: kafka-service # job name
+    #     metrics_path: /metrics
+    #     kubernetes_sd_configs:
+    #       - role: endpoints
+    #     relabel_configs:
+    #       - source_labels: [app.kubernetes.io/name]
+    #         action: replace
+    #         targetLabel: job
+    #         regex: common-kafka
+    #         replacement: kafka-service
+
+    #   - job_name: zookeeper-service # job name
+    #     metrics_path: /metrics
+    #     kubernetes_sd_configs:
+    #       - role: endpoints
+    #     relabel_configs:
+    #       - source_labels: [app.kubernetes.io/name]
+    #         action: replace
+    #         targetLabel: job
+    #         regex: common-zookeeper
+    #         replacement: zookeeper-service
+
+    #   - job_name: redis-service # job name
+    #     metrics_path: /metrics
+    #     kubernetes_sd_configs:
+    #       - role: endpoints
+    #     relabel_configs:
+    #       - source_labels: [app.kubernetes.io/name]
+    #         action: replace
+    #         targetLabel: job
+    #         regex: redis
+    #         replacement: redis-service
+
+    #   - job_name: ticket-reservation-consumer-service # job name
+    #     metrics_path: /metrics
+    #     kubernetes_sd_configs:
+    #       - role: endpoints
+    #     relabel_configs:
+    #       - source_labels: [app.kubernetes.io/name]
+    #         action: replace
+    #         targetLabel: job
+    #         regex: ticket-reservation-consumer
+    #         replacement: ticket-reservation-consumer-service
+
+
+grafana:
+  enabled: true
+  adminPassword: "admin"
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    annotations:
+      nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+      nginx.ingress.kubernetes.io/proxy-connect-timeout: "30"
+      nginx.ingress.kubernetes.io/proxy-read-timeout: "1800"
+      nginx.ingress.kubernetes.io/proxy-send-timeout: "1800"
+      nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+      nginx.ingress.kubernetes.io/ssl-redirect: "false"
+      nginx.ingress.kubernetes.io/proxy-body-size: "0"
+      nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    # hosts:
+    #   - grafana.gmmt.store
+    path: /
+  persistence:
+    enabled: true
+    size: 5Gi
+    storageClassName: gp2
