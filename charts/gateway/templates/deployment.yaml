@@ -47,6 +47,14 @@ spec:
           env:
             - name: APP_ENV
               value: prod
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NODE_NAME
+              valueFrom
+                fieldRef:
+                  fieldPath: spec.nodeName
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
