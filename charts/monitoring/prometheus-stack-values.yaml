@@ -11,9 +11,9 @@ prometheus:
               storage: 30Gi
           storageClassName: gp2
     serviceMonitorSelectorNilUsesHelmValues: false
-    serviceMonitorSelector:
-      matchLabels:
-        app: ticketing
+    serviceMonitorSelector: {}
+      # matchLabels:
+      #   app: ticketing
     serviceMonitorNamespaceSelector: {}
     replicas: 1
     # additionalScrapeConfigs:
