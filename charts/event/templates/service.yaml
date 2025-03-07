@@ -4,7 +4,7 @@ metadata:
   name: {{ .Release.Name }}-service
   labels:
     {{- include "event.labels" . | nindent 4 }}
-    job: node-api
+    job: ticketing
     app: ticketing
 spec:
   type: {{ .Values.service.type }}
