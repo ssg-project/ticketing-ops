@@ -4,7 +4,7 @@ metadata:
   name: {{ .Release.Name }}-service
   labels:
     {{- include "event.labels" . | nindent 4 }}
-    job: ticketing
+    job: xxx
     app: ticketing
 spec:
   type: {{ .Values.service.type }}
@@ -15,4 +15,3 @@ spec:
       name: http
   selector:
     {{- include "event.selectorLabels" . | nindent 4 }}
-    app: ticketing
