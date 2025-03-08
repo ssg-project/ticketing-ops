@@ -8,6 +8,9 @@ metadata:
     app: prometheus
 spec:
   jobLabel: job
+  namespaceSelector:
+    matchNames:
+      - default
   endpoints:
     - port: http
       interval: 30s
@@ -15,6 +18,3 @@ spec:
   selector:
     matchLabels:
       app: ticketing
-  # namespaceSelector:
-  #   matchNames:
-  #     - your-app-namespace
