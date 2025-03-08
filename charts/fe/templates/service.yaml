@@ -4,6 +4,8 @@ metadata:
   name: {{ include "fe.fullname" . }}
   labels:
     {{- include "fe.labels" . | nindent 4 }}
+    job: {{ include "fe.fullname" . }}-job
+    app: ticketing
 spec:
   type: {{ .Values.service.type }}
   ports:

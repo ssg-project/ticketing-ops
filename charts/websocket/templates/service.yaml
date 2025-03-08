@@ -4,6 +4,8 @@ metadata:
   name: {{ include "websocket.fullname" . }}
   labels:
     {{- include "websocket.labels" . | nindent 4 }}
+    job: {{ include "websocket.fullname" . }}-job
+    app: ticketing
 spec:
   type: {{ .Values.service.type }}
   ports:
