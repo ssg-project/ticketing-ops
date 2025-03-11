@@ -74,10 +74,10 @@ readinessProbe:
   periodSeconds: 10
   failureThreshold: 3
 autoscaling:
-  enabled: false
+  enabled: true
   minReplicas: 1
-  maxReplicas: 100
-  targetCPUUtilizationPercentage: 80
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 50
   # targetMemoryUtilizationPercentage: 80
 volumes: []
 # - name: foo
