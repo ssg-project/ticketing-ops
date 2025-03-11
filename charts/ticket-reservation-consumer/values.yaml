@@ -59,10 +59,10 @@ resources: {}
 #     path: /health
 #     port: 9093
 autoscaling:
-  enabled: false
+  enabled: truee
   minReplicas: 1
-  maxReplicas: 100
-  targetCPUUtilizationPercentage: 80
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 50
   # targetMemoryUtilizationPercentage: 80
 volumes: []
 # - name: foo
