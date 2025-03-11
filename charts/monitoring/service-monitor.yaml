@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: ticketing-service-monitor
+  namespace: monitoring
+  labels:
+    release: prometheus
+spec:
+  jobLabel: job
+  namespaceSelector:
+    matchNames:
+      - default
+  endpoints:
+    - port: http
+      interval: 30s
+      path: /metrics
+  selector:
+    matchLabels:
+      app: ticketing

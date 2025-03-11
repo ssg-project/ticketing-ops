@@ -4,6 +4,8 @@ metadata:
   name: {{ .Release.Name }}-service
   labels:
     {{- include "event.labels" . | nindent 4 }}
+    job: {{ .Release.Name}}-service-job
+    app: ticketing
 spec:
   type: {{ .Values.service.type }}
   ports:

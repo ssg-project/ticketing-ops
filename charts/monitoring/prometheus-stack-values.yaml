@@ -1,0 +1,61 @@
+prometheus:
+  enabled: true
+  prometheusSpec:
+    retention: 30d
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 30Gi
+          storageClassName: gp2
+    serviceMonitorSelectorNilUsesHelmValues: false
+    serviceMonitorSelector:
+      matchLabels:
+        # app: ticketing
+        release: prometheus
+    serviceMonitorNamespaceSelector: {}
+    replicas: 1
+    additionalScrapeConfigs:
+    - job_name: kube-etcd
+      kubernetes_sd_configs:
+        - role: node
+      scheme: https
+      tls_config:
+        ca_file:   /etc/prometheus/secrets/etcd-client-cert/etcd-ca
+        cert_file: /etc/prometheus/secrets/etcd-client-cert/etcd-client
+        key_file:  /etc/prometheus/secrets/etcd-client-cert/etcd-client-key
+      relabel_configs:
+      - action: labelmap
+
+grafana:
+  enabled: true
+  adminPassword: "admin"
+  ingress:
+    enabled: true
+    ingressClassName: alb
+    annotations:
+      alb.ingress.kubernetes.io/load-balancer-name: my-alb
+      alb.ingress.kubernetes.io/target-type: ip
+      alb.ingress.kubernetes.io/group.name: ingress-group.group1
+      alb.ingress.kubernetes.io/scheme: internet-facing
+      alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:206177862976:certificate/89e2b200-d921-4c29-b6e5-5a51f5a4d2be
+      alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80}, {"HTTPS":443}]'
+      alb.ingress.kubernetes.io/ssl-redirect: '443'
+      alb.ingress.kubernetes.io/healthcheck-path: /health
+      alb.ingress.kubernetes.io/success-codes: '200'
+    hosts:
+      - grafana.gmmt.store
+        path: /
+  persistence:
+    enabled: true
+    size: 5Gi
+    storageClassName: gp2
+  additionalDataSources:
+    - name: Loki
+      type: loki
+      access: proxy
+      url: http://loki.monitoring.svc.cluster.local:3100
+      jsonData:
+        timeout: 30

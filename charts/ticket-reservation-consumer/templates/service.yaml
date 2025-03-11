@@ -4,6 +4,8 @@ metadata:
   name: {{ include "ticket-reservation-consumer.fullname" . }}
   labels:
     {{- include "ticket-reservation-consumer.labels" . | nindent 4 }}
+    job: {{ include "ticket-reservation-consumer.fullname" . }}
+    app: ticketing
 spec:
   type: {{ .Values.service.type }}
   ports:
