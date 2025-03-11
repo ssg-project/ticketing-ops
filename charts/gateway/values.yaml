@@ -1,7 +1,7 @@
 replicaCount: 1
 image:
   repository: 206177862976.dkr.ecr.ap-northeast-2.amazonaws.com/ticketing/api-gateway
-  tag: d9b1be9ac473097dfdf5ec675d3acc03bcbbc530
+  tag: 09afbf8f7969faf527dc424eeea3fe3c1707227a
   pullPolicy: Always
 imagePullSecrets: []
 nameOverride: ""
@@ -75,7 +75,7 @@ readinessProbe:
   periodSeconds: 10
   failureThreshold: 3
 readinessGates:
-- conditionType: target-health.alb.ingress.k8s.aws/gateway_gateway_8000
+  - conditionType: target-health.alb.ingress.k8s.aws/gateway_gateway_8000
 autoscaling:
   enabled: true
   minReplicas: 1
