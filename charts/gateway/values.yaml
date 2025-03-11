@@ -75,7 +75,7 @@ readinessProbe:
   periodSeconds: 10
   failureThreshold: 3
 readinessGates:
-- conditionType: target-health.alb.ingress.k8s.aws/gateway
+- conditionType: target-health.alb.ingress.k8s.aws/gateway_gateway_8000
 autoscaling:
   enabled: true
   minReplicas: 1
