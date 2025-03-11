@@ -73,6 +73,8 @@ readinessProbe:
   timeoutSeconds: 5
   periodSeconds: 10
   failureThreshold: 3
+  readinessGates:
+- conditionType: target-health.alb.ingress.k8s.aws/fe
 autoscaling:
   enabled: true
   minReplicas: 1
