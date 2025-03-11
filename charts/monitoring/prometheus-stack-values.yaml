@@ -46,8 +46,10 @@ grafana:
       alb.ingress.kubernetes.io/healthcheck-path: /health
       alb.ingress.kubernetes.io/success-codes: '200'
     hosts:
-      - grafana.gmmt.store
-        path: /
+      - host: grafana.gmmt.store
+        paths:
+        - path: /
+          pathType: Prefix
   persistence:
     enabled: true
     size: 5Gi
