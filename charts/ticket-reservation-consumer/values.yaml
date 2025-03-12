@@ -2,7 +2,7 @@ replicaCount: 1
 image:
   repository: 206177862976.dkr.ecr.ap-northeast-2.amazonaws.com/ticketing/consumer-ticket
   pullPolicy: Always
-  tag: 60b68a354031588bb2b9773e341584d14ca6b455
+  tag: d49978203867ccbebcb8243c169992f933183f1c
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
