@@ -93,8 +93,3 @@ volumeMounts: []
 nodeSelector: {}
 tolerations: []
 affinity: {}
-secret:
-  server:
-    url: http://gateway.default.svc.cluster.local:8000
-  websocket:
-    server_url: ws://websocket.default.svc.cluster.local:9000/ws
