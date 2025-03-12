@@ -1,0 +1,46 @@
+# -- Enable Promtail config from Helm chart
+config:
+  enabled: true
+
+  # -- The log level of the Promtail server
+  logLevel: info
+
+  # -- The log format of the Promtail server
+  logFormat: logfmt
+
+  # -- The port of the Promtail server
+  serverPort: 3101
+
+  # -- The config of clients of the Promtail server
+  clients:
+    - url: http://loki-gateway/loki/api/v1/push
+
+  # -- Configures where Promtail will save it's positions file, to resume reading after restarts.
+  positions:
+    filename: /run/promtail/positions.yaml
+
+# -- Deploys Promtail as a DaemonSet
+daemonset:
+  enabled: true
+
+tolerations:
+  - key: "karpenter.sh/controller"
+    operator: "Exists"
+    effect: "NoSchedule"
+
+# -- Annotations for the DaemonSet
+annotations: {}
+
+# -- Pod labels
+podLabels: {}
+
+# -- Pod annotations
+podAnnotations: {}
+
+# -- RBAC configuration
+rbac:
+  create: true
+
+# -- ServiceAccount configuration
+serviceAccount:
+  create: true
