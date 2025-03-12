@@ -86,8 +86,3 @@ volumeMounts: []
 nodeSelector: {}
 tolerations: []
 affinity: {}
-secret:
-  kafka:
-    brokerUrl: common-kafka.default.svc.cluster.local:9092
-    topic: ticketing-reservation
-    groupId: reservation_group
