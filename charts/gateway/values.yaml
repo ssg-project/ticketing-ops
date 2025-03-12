@@ -1,7 +1,7 @@
 replicaCount: 1
 image:
   repository: 206177862976.dkr.ecr.ap-northeast-2.amazonaws.com/ticketing/api-gateway
-  tag: c676d7fc1c196fa4c836d60b38119ec1ca4c3cdf
+  tag: e2b7ea5c084d859439dd27fd85eee78418643a8c
   pullPolicy: Always
 imagePullSecrets: []
 nameOverride: ""
