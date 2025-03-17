@@ -1,4 +1,4 @@
-name: deploy all + install nginx
+name: deploy all
 
 on:
   workflow_dispatch:
@@ -23,15 +23,6 @@ jobs:
           helm repo update
 
           aws eks update-kubeconfig --name ticketing-cluster
-
-      # - name: Install NGINX Ingress Controller
-      #   run: |
-      #     if ! helm list -n ingress-nginx | grep -q ingress-nginx; then
-      #       helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-      #       helm repo update
-      #       helm upgrade --install ingress-nginx ingress-nginx/ingress-nginx \
-      #         --namespace ingress-nginx --create-namespace
-      #     fi
 
       - name: Deploy Helm Charts
         run: |

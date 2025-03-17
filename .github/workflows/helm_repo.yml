@@ -1,0 +1,31 @@
+name: package-helm-charts
+on:
+  push:
+    branches: ['main']
+    paths-ignore: ['.github/**']
+jobs:
+  package-charts:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Login to GHCR
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+        
+      - name: Package and Push Helm Charts
+        run: |
+          for service in gateway fe user websocket event ticket-reservation-consumer ticketing monitoring; do
+            pushd charts/$service
+            helm dependency build
+            helm package .
+            helm push ${service}-*.tgz oci://ghcr.io/${{ github.repository }}/charts
+            popd
+          done
