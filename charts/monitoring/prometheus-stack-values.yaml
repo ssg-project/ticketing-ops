@@ -1,7 +1,8 @@
 prometheus:
   enabled: true
   prometheusSpec:
-    retention: 30d
+    disableCompaction: true # thanos 사용을 위해 압축 기능 사용 x
+    retention: 1d
     storageSpec:
       volumeClaimTemplate:
         spec:
@@ -28,7 +29,28 @@ prometheus:
         key_file:  /etc/prometheus/secrets/etcd-client-cert/etcd-client-key
       relabel_configs:
       - action: labelmap
-
+    thanos:
+      image: quay.io/thanos/thanos:v0.28.1
+      objectStorageConfig:
+        existingSecret:
+          name: thanos-objstore-config
+          key: thanos.yaml
+  thanosService:
+    enabled: true
+    annotations: {}
+    labels: {}
+    externalTrafficPolicy: Cluster
+    type: ClusterIP
+    portName: grpc
+    port: 10901
+    targetPort: "grpc"
+    httpPortName: http
+    httpPort: 10902
+    targetHttpPort: "http"
+    clusterIP: ""
+    nodePort: 30901
+    httpNodePort: 30902
+    
 grafana:
   enabled: true
   adminPassword: "admin"
@@ -56,9 +78,24 @@ grafana:
     size: 5Gi
     storageClassName: gp2
   additionalDataSources:
+    # - name: Prometheus
+    #   type: prometheus
+    #   access: proxy
+    #   url: http://prometheus-kube-prometheus-prometheus.monitoring.svc.cluster.local:9090
+    #   jsonData:
+    #     timeInterval: "5s"
+
+    - name: Thanos
+      type: prometheus
+      access: proxy
+      url: http://thanos-query.thanos.svc.cluster.local:9090
+      jsonData:
+        timeInterval: "5s"
+
     - name: Loki
       type: loki
       access: proxy
-      url: http://loki.monitoring.svc.cluster.local:3100
+      url: http://loki-gateway.monitoring.svc.cluster.local
       jsonData:
         timeout: 30
+    

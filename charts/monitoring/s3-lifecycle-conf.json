@@ -1,0 +1,20 @@
+{
+  "Rules": [
+      {
+          "ID": "LogArchivingRule",
+          "Filter": {
+              "ObjectSizeGreaterThan": 0
+          },
+          "Status": "Enabled",
+          "Transitions": [
+              {
+                  "Days": 7,
+                  "StorageClass": "GLACIER"
+              }
+          ],
+          "Expiration": {
+              "Days": 187
+          }
+      }
+  ]
+}
