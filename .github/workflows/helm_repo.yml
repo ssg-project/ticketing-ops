@@ -24,7 +24,7 @@ jobs:
         
       - name: Package and Push Helm Charts
         run: |
-          for service in gateway fe user websocket event ticket-reservation-consumer ticketing monitoring; do
+          for service in gateway fe user websocket event ticket-reservation-consumer ticketing; do
             pushd charts/$service
             helm dependency build
             helm package .
